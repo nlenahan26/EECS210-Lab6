@@ -2,11 +2,10 @@
 # KUID: 3178995
 # LAB Session (Day/Time): Wednesday 11am
 # LAB Assignment: Lab 6
-# Description:
-#
-#
-#
-# Collaborators/Sources:
+# Description: This program implements the Binomial Theorem of Section 6.4
+#              to expand input expressions of the form (x+y)^n
+# Collaborators/Sources: None
+
 import sys
 import math
 
@@ -33,13 +32,22 @@ def get_input(mode):
 
     return cleaned
 
+#Binomial Theorem Function
 def binomial_theorem(n):
 
+    #Loops through each term in the expansion
     for j in range(n+1):
+
+        #Calculates binomial coefficient according to the formula from 6.4
         combination = math.factorial(n) // (math.factorial(j) * math.factorial(n - j))
+
+        #Finds the x and y exponents for the current term
         x_exponent = n - j
         y_exponent = j
 
+        #Goes through the exponents of x and y and prints each term
+        #If an exponent is 0, the variable isn't printed
+        #If an exponent is 1, the exponent isn't printed
         if y_exponent == 0:
             print (f"x^{x_exponent}", end="")
         elif x_exponent == 0:
@@ -53,11 +61,15 @@ def binomial_theorem(n):
         else:
             print (f"{combination}x^{x_exponent}y^{y_exponent}", end="")
 
+        #Adds the plus sign between each term without adding one at the end
         if j < n:
             print(" + ", end="")
 
+    #Prints new line after the expansion
     print()
 
 if __name__ == "__main__":
+
+    #Gets input and expands expression
     n = get_input(0)        
     binomial_theorem(n)
